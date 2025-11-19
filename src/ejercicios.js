@@ -150,6 +150,69 @@ function matrizAImagen(matriz, rutaSalida) {
   // fs.writeFileSync(rutaSalida, buffer);
   
   // ESCRIBE TU CÓDIGO AQUÍ
+
+  const fs = require('fs');
+  const path = require('path');
+  const { PNG } = require('pngjs');
+
+  // 1. Validar la matriz (si la función auxiliar existe)
+  if (typeof validarMatriz === 'function') {
+    validarMatriz(matriz);
+  }
+
+  // 2. Obtener dimensiones (usa helper si existe; si no, las calculamos aquí)
+  let dims;
+  if (typeof obtenerDimensiones === 'function') {
+    dims = obtenerDimensiones(matriz);
+  } else {
+    const filas = Array.isArray(matriz) ? matriz.length : 0;
+    const columnas = filas > 0 ? matriz[0].length : 0;
+    dims = { filas, columnas };
+  }
+
+  // 3. Crear el PNG con esas dimensiones
+  const png = new PNG({
+    width: dims.columnas,
+    height: dims.filas
+  });
+
+  // Función local para limitar el valor de color 0–255 si no existe la auxiliar
+  function clampColor(v) {
+    if (typeof limitarValorColor === 'function') {
+      return limitarValorColor(v);
+    }
+    v = Number(v) || 0;
+    if (v < 0) return 0;
+    if (v > 255) return 255;
+    return v;
+  }
+
+  // 4. Llenar png.data recorriendo la matriz
+  for (let y = 0; y < dims.filas; y++) {
+    for (let x = 0; x < dims.columnas; x++) {
+      const idx = (dims.columnas * y + x) << 2; // *4
+      const pixel = matriz[y][x] || { r: 0, g: 0, b: 0, a: 255 };
+
+      png.data[idx]     = clampColor(pixel.r);
+      png.data[idx + 1] = clampColor(pixel.g);
+      png.data[idx + 2] = clampColor(pixel.b);
+      png.data[idx + 3] = clampColor(
+        pixel.a !== undefined ? pixel.a : 255
+      );
+    }
+  }
+
+  // 5. Asegurar que el directorio de salida exista
+  const dir = path.dirname(rutaSalida);
+  if (typeof asegurarDirectorio === 'function') {
+    asegurarDirectorio(dir);
+  } else {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
+  // 6. Generar el buffer PNG y guardarlo en disco
+  const buffer = PNG.sync.write(png);
+  fs.writeFileSync(rutaSalida, buffer);
 }
 
 /**
