@@ -562,21 +562,40 @@ function rotar90Grados(matriz) {
  */
 function mezclarImagenes(matriz1, matriz2, factor) {
   // TODO: Implementar mezcla de imágenes
-  
+
   // 1. Verificar que tengan las mismas dimensiones
-  // const dims1 = obtenerDimensiones(matriz1);
-  // const dims2 = obtenerDimensiones(matriz2);
-  // if (dims1.filas !== dims2.filas || dims1.columnas !== dims2.columnas) {
-  //   throw new Error('Las imágenes deben tener el mismo tamaño');
-  // }
-  
-  // 2. Para cada pixel:
-  // r = r1 * (1 - factor) + r2 * factor
-  // g = g1 * (1 - factor) + g2 * factor
-  // b = b1 * (1 - factor) + b2 * factor
-  
-  return []; // REEMPLAZAR
+  const dims1 = obtenerDimensiones(matriz1);
+  const dims2 = obtenerDimensiones(matriz2);
+
+  if (dims1.filas !== dims2.filas || dims1.columnas !== dims2.columnas) {
+    throw new Error('Las imágenes deben tener el mismo tamaño');
+  }
+
+  // 2. Crear matriz resultado
+  const resultado = copiarMatriz(matriz1);
+
+  // 3. Mezclar pixel por pixel
+  for (let i = 0; i < dims1.filas; i++) {
+    for (let j = 0; j < dims1.columnas; j++) {
+      const p1 = matriz1[i][j];
+      const p2 = matriz2[i][j];
+
+      const r = p1.r * (1 - factor) + p2.r * factor;
+      const g = p1.g * (1 - factor) + p2.g * factor;
+      const b = p1.b * (1 - factor) + p2.b * factor;
+
+      resultado[i][j] = {
+        r: limitarValorColor(r),
+        g: limitarValorColor(g),
+        b: limitarValorColor(b),
+        a: limitarValorColor(p1.a * (1 - factor) + p2.a * factor) // mezcla alpha opcional
+      };
+    }
+  }
+
+  return resultado; // MATRIZ MEZCLADA
 }
+
 
 /**
  * Ejercicio 4.2: Filtro Sepia (9 puntos)
