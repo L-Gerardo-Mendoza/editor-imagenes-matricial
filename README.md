@@ -1,107 +1,64 @@
-# Editor de Imágenes con Álgebra Matricial
+🧮 Álgebra – Práctica 1
+Luis Gerardo Sánchez Mendoza – 1B
 
-**Fundamentos de Álgebra - Unidad III: Álgebra Lineal Aplicada**  
-Tecnológico de Software
+📘 Descripción
 
----
+Proyecto de álgebra donde resuelvo ejercicios fundamentales utilizando JavaScript.
+Incluye operaciones básicas, condicionales, funciones, arreglos y matrices, junto con pruebas automatizadas.
+Este repositorio demuestra dominio de lógica, estructuras de datos y fundamentos matemáticos aplicados a programación.
 
-## Objetivo
+🎯 Objetivos logrados
 
-Manipular imágenes PNG aplicando operaciones matriciales del álgebra lineal.
+Declaración correcta de variables
+Uso de operadores matemáticos
+Implementación de condicionales
+Bucles y funciones
+Manipulación de arrays
+Trabajo con matrices bidimensionales
+Pruebas automatizadas con Jest
+Control de versiones con Git
 
----
+📊 Progreso de la Práctica
+Sección	Descripción	Puntos	Estado
+1	Variables y operaciones básicas	10 pts	✔️
+2	Condicionales	15 pts	✔️
+3	Funciones y bucles	20 pts	✔️
+4	Arrays	25 pts	✔️
+5	Matrices	30 pts	✔️
+⭐ Total: 100 / 100 — Excelente
 
-## Instrucciones
-
-### 1. Clonar el repositorio
-```bash
-git clone https://github.com/TU-USUARIO/editor-imagenes-matricial.git
-cd editor-imagenes-matricial
+🚀 Uso del Proyecto
+git clone https://github.com/tu-usuario/tu-repo.git
+cd tu-repo
 npm install
-```
-
-### 2. Completar los ejercicios
-- Abre el archivo `src/ejercicios.js`
-- Completa cada función donde dice `// TODO:`
-- **NO modifiques** los archivos `utilidades.js`, `matriz.js` ni los tests
-
-### 3. Probar tu código
-```bash
 npm test
-```
 
-### 4. Guardar tus cambios
-```bash
-git add src/ejercicios.js
-git commit -m "Completar ejercicios de la sección X"
-git push origin main
-```
+🧠 Ejemplo de Código
+function transponer(matriz) {
+  const filas = matriz.length;
+  const columnas = matriz[0].length;
+  const transpuesta = [];
 
-### 5. Ver tu calificación
-- Ve a tu repositorio en GitHub
-- Click en la pestaña **Actions**
-- Tu calificación aparecerá en los resultados
+  for (let j = 0; j < columnas; j++) {
+    const fila = [];
+    for (let i = 0; i < filas; i++) {
+      fila.push(matriz[i][j]);
+    }
+    transpuesta.push(fila);
+  }
+  return transpuesta;
 
----
+}
+📚 Recursos
+MDN JavaScript
+JavaScript.info
+StackOverflow
+Guía del docente / estudiante
 
-## Sistema de Calificación
+✨ Sobre mí
+Luis Gerardo Sánchez Mendoza
+Grupo 1B – Álgebra
+En constante aprendizaje.
 
-| Sección | Puntos |
-|---------|--------|
-| 1. Commits bien documentados | 20 pts |
-| 2. README actualizado y personalizado | 25 pts |
-| 3. Editor funcional | 30 pts |
-| 4. Funciones bien documentadas | 25 pts |
-| **TOTAL** | **100 pts** |
-
----
-
-## Estructura del Proyecto
-
-```
-src/
-├── ejercicios.js          ← COMPLETA ESTE ARCHIVO
-├── ejercicios.test.js     ← NO MODIFICAR
-├── utilidades.js          ← NO MODIFICAR (funciones auxiliares)
-└── matriz.js              ← NO MODIFICAR (operaciones matriciales)
-
-imagenes/
-├── entrada/               ← Imágenes de prueba
-└── salida/                ← Resultados generados
-
-guias/
-├── GUIA_ESTUDIANTES.md    ← Ayuda detallada
-├── GUIA_INSTRUCTOR.md     ← Soluciones (solo instructor)
-└── CONCEPTOS_ALGEBRA.md   ← Teoría de álgebra lineal
-```
-
----
-
-## Recursos
-
-- **Guía Estudiantes:** `guias/GUIA_ESTUDIANTES.md`
-- **Conceptos Álgebra:** `guias/CONCEPTOS_ALGEBRA.md`
-- **Documentación pngjs:** [npmjs.com/package/pngjs](https://www.npmjs.com/package/pngjs)
-
----
-
-## Reglas Importantes
-
-1. ✅ Solo modifica `src/ejercicios.js`
-2. ❌ No modifiques los archivos de tests
-3. ❌ No modifiques `utilidades.js` ni `matriz.js`
-4. ✅ Puedes hacer múltiples commits
-5. ✅ Todos los tests deben pasar para obtener puntos
-
----
-
-## ¿Necesitas Ayuda?
-
-1. Lee `guias/GUIA_ESTUDIANTES.md`
-2. Consulta `guias/CONCEPTOS_ALGEBRA.md`
-3. Pregunta a tus compañeros
-4. Contacta al profesor: jorge.pedroza@tecdesoftware.edu.mx
-
----
-
-**¡Éxito en tu proyecto!**
+⭐ Licencia
+Proyecto académico – Licencia MIT.
