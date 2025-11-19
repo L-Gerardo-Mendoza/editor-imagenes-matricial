@@ -1,9 +1,9 @@
 // ============================================
 // EDITOR DE IMÁGENES CON ÁLGEBRA MATRICIAL
 // ============================================
-// Nombre del estudiante: _________________
-// Fecha: _________________
-// Grupo: _________________
+// Nombre del estudiante: Luis Gerardo Sanchez Mendoza
+// Fecha: 18 Noviembre 2025
+// Grupo: 1B
 
 const { PNG } = require('pngjs');
 const fs = require('fs');
@@ -56,40 +56,45 @@ const {
  * // matriz[0][0] = {r: 0, g: 0, b: 128, a: 255}
  */
 function imagenAMatriz(rutaImagen) {
-  // TODO: Implementar la conversión de PNG a matriz
+  // Importar dependencias
+  const fs = require('fs');
+  const { PNG } = require('pngjs');
   
   // 1. Leer el archivo PNG
-  // const buffer = fs.readFileSync(rutaImagen);
-  // const png = PNG.sync.read(buffer);
-  
-  // 2. Crear la matriz vacía
-  // const matriz = [];
-  
+  const buffer = fs.readFileSync(rutaImagen);
+  const png = PNG.sync.read(buffer);
+
+  // 2. Crear la matriz vacía donde almacenaremos los píxeles
+  const matriz = [];
+
   // 3. Recorrer cada fila (y) y cada columna (x)
-  // for (let y = 0; y < png.height; y++) {
-  //   const fila = [];
-  //   for (let x = 0; x < png.width; x++) {
-  //     // 4. Calcular el índice en el buffer
-  //     const idx = (png.width * y + x) << 2; // equivalente a * 4
-  //     
-  //     // 5. Extraer los valores RGBA
-  //     const pixel = {
-  //       r: png.data[idx],
-  //       g: png.data[idx + 1],
-  //       b: png.data[idx + 2],
-  //       a: png.data[idx + 3]
-  //     };
-  //     
-  //     fila.push(pixel);
-  //   }
-  //   matriz.push(fila);
-  // }
-  
-  // 6. Retornar la matriz
-  // return matriz;
-  
-  return []; // REEMPLAZAR CON TU CÓDIGO
+  for (let y = 0; y < png.height; y++) {
+    const fila = [];
+
+    for (let x = 0; x < png.width; x++) {
+      // 4. Calcular el índice en el buffer
+      const idx = (png.width * y + x) * 4; // o ( << 2 )
+
+      // 5. Extraer los valores RGBA del buffer
+      const pixel = {
+        r: png.data[idx],
+        g: png.data[idx + 1],
+        b: png.data[idx + 2],
+        a: png.data[idx + 3]
+      };
+
+      // Agregar el pixel a la fila
+      fila.push(pixel);
+    }
+
+    // Agregar la fila completa a la matriz
+    matriz.push(fila);
+  }
+
+  // 6. Retornar la matriz final
+  return matriz;
 }
+
 
 /**
  * Ejercicio 1.2: Convertir matriz de píxeles a imagen PNG (5 puntos)
