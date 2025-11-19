@@ -277,8 +277,24 @@ function obtenerDimensionesImagen(rutaImagen) {
   // Pista: Puedes cargar la imagen y usar obtenerDimensiones()
   // o leer solo el header del PNG
   
-  return { ancho: 0, alto: 0, totalPixeles: 0 }; // REEMPLAZAR
+  const fs = require('fs');
+  const { PNG } = require('pngjs');
+
+  // 1. Leer el archivo PNG (solo header, PNG.sync.read ya hace parsing eficiente)
+  const buffer = fs.readFileSync(rutaImagen);
+  const png = PNG.sync.read(buffer);
+
+  // 2. Obtener ancho y alto del PNG
+  const ancho = png.width;
+  const alto = png.height;
+
+  // 3. Calcular total de píxeles
+  const totalPixeles = ancho * alto;
+
+  // 4. Retornar el objeto solicitado
+  return { ancho, alto, totalPixeles };
 }
+
 
 // ============================================
 // SECCIÓN 2: OPERACIONES BÁSICAS (25 puntos)
