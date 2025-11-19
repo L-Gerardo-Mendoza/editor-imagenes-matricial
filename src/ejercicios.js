@@ -361,8 +361,27 @@ function ajustarBrillo(matriz, factor) {
 function invertirColores(matriz) {
   // TODO: Implementar inversión de colores
   
-  return []; // REEMPLAZAR
+  // 1. Crear copia de la matriz original
+  const resultado = copiarMatriz(matriz);
+
+  // 2. Recorrer cada pixel e invertir sus colores
+  for (let i = 0; i < resultado.length; i++) {
+    for (let j = 0; j < resultado[i].length; j++) {
+
+      const pixel = matriz[i][j];
+
+      resultado[i][j] = {
+        r: 255 - pixel.r,
+        g: 255 - pixel.g,
+        b: 255 - pixel.b,
+        a: pixel.a  // alpha NO se invierte
+      };
+    }
+  }
+
+  return resultado;
 }
+
 
 /**
  * Ejercicio 2.3: Convertir a escala de grises (9 puntos)
