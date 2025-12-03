@@ -3,7 +3,7 @@
 // ============================================
 // Nombre del estudiante: Luis Gerardo Sanchez Mendoza
 // Fecha: 18 Noviembre 2025
-// Grupo: 1B
+// Grupo: 1Basddasd
 
 const { PNG } = require('pngjs');
 const fs = require('fs');
